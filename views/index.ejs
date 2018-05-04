@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Thinkful Tube</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link type="text/css" href="../css/grid.css" rel='stylesheet' />
+  <link type="text/css" href="../css/main.css" rel='stylesheet' />
+  
+</head>
+<body>
+  <main role="main">
+    <h1>Enter a YouTube search term:</h1>
+      <form action="#" class="js-search-form" name="Youtube-Search">
+        <label for="searchTerm"></label>
+        <input type="text" class="js-query" id="searchTerm">
+        <button type="submit">Search Videos</button>
+      </form>
+      
+      
+      <div class="js-search-results-wrapper">
+        <h2><span class="numResults"></span> Results</h2>
+        <div class="js-search-results" aria-live="assertive" >
+          
+        </div>
+      </div>
+      <div class="js-search-results-footer" aria-live="polite" hidden>
+        
+      </div>
+      <input type='hidden' class='js-query-page-number' value=' ' />
+      <input type='hidden' class='js-query-page-number-prior' value=' ' />
+  </main>
+  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script type='text/javascript' src='js/index.js'></script>
+</body>
+</html>

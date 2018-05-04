@@ -1,0 +1,37 @@
+* { box-sizing:border-box; }
+body {
+  padding-top: 50px;
+  padding-left:30px;
+}
+
+.block {
+  width:400px;
+  margin: 0 auto;
+  text-align: center;
+  display:block;
+}
+
+.mainImage {
+  float:left;
+  width:180px;
+  display:block;
+}
+.moreInfo {
+  float:left;
+  width:180px;
+  height:200px;
+  padding-top:60px;
+}
+.js-search-results-footer {
+  border-top:solid 1px #dcdcdc;
+  clear:both;
+  
+  width:100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.moreResults, .lessResults { 
+  cursor: pointer;
+  color:blue;
+  width:75px;
+}
