@@ -26,45 +26,42 @@ function buildFooter() {
 }
 
 function fillResults(results) { 
-  let dataHTML = '';
+  let dataHTML = '', finalHTML = '';
   let resultCount = 0;
   dataHTML = results.items.map(  (item, index) => {
-    return formatResult(item);
-  } );
+    return formatResult(item,index);
+  } ).join('');
   
   setNextPageToken(results.nextPageToken);
   setLastPageToken(results.prevPageToken);  
 
-  for(let i = 0;i < results.items.length; i++) {
-      resultCount += ('youtube#video' === results.items[i].id.kind);
+  resultCount = results.items.length;
+
+  finalHTML = `<p>Results: ${resultCount}</p>` + dataHTML;
+
+    $('.js-search-results')
+    .prop('hidden', false)
+    .html(finalHTML);    
+    //.html(dataHTML);    
   }
-  $('.numResults').html(resultCount);
 
-  $('.js-search-results-wrapper')
-    .prop('hidden', false);
-  $('.js-search-results')
-    .html(dataHTML);    
-  $('.js-search-results-footer') 
-    .html(buildFooter())
-    .prop('hidden', false);
-}
-
-function formatResult(item) { 
-  
-  if (item.id.kind !== 'youtube#video') {return null;}
-  if (item.id.kind === 'youtube#video') { 
+function formatResult(item,index) { 
+  const youTubeLink = 'https://www.youtube.com/watch?v=';
+  let vId = ((item.id.videoId === undefined) ? '#' : youTubeLink + `${item.id.videoId}`);
   return `
   <div class='block'>
+    <p>${index+1}. ${item.snippet.title}
+    </p>
     <div class='mainImage'>
-    <a target='_new' href='https://www.youtube.com/watch?v=${item.id.videoId}'><img alt='${item.snippet.title}' src='${item.snippet.thumbnails.medium.url}' height=150 width=150 /></a>
+      <a target='_new' href='${vId}' aria-label='Open New Window of Video titled ${item.snippet.title}.'><img alt='${index+1} ${item.snippet.title}' src='${item.snippet.thumbnails.medium.url}' height=150 width=150 /></a>
     </div>
-  <div class='moreInfo'><a target="_new" rel="noopener noreferrer" href='https://www.youtube.com/channel/${item.snippet.channelId}'>More Videos from Channel </a>
+  <div class='moreInfo'><a target="_new" aria-label="Open New Window of more videos of channel ${item.snippet.channelTitle}." rel="noopener noreferrer" href='https://www.youtube.com/channel/${item.snippet.channelId}'>More Videos from Channel </a>
   </div>
-  `;}
+  `;
 }
 
 function handleSubmit(isBack) { 
- 
+
   //extract the value from the input
   let queryVal, pageNumber;
   

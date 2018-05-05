@@ -3,12 +3,20 @@ body {
   padding-top: 50px;
   padding-left:30px;
 }
+.js-search-results {
+  font:0;
+  content: '';
+}
 
 .block {
   width:400px;
   margin: 0 auto;
   text-align: center;
   display:block;
+  clear:left;
+  height:250px;
+  border: solid 1px #dcdcdc;
+  border-collapse: collapse;
 }
 
 .mainImage {
